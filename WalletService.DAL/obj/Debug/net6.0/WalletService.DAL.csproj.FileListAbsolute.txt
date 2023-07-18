@@ -1,0 +1,14 @@
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\obj\Debug\net6.0\WalletService.DAL.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\obj\Debug\net6.0\WalletService.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\obj\Debug\net6.0\WalletService.DAL.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\obj\Debug\net6.0\WalletService.DAL.AssemblyInfo.cs
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\obj\Debug\net6.0\WalletService.DAL.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\bin\Debug\net6.0\WalletService.DAL.deps.json
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\bin\Debug\net6.0\WalletService.DAL.runtimeconfig.json
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\bin\Debug\net6.0\WalletService.DAL.dll
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\bin\Debug\net6.0\WalletService.DAL.pdb
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\obj\Debug\net6.0\WalletService.DAL.dll
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\obj\Debug\net6.0\refint\WalletService.DAL.dll
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\obj\Debug\net6.0\WalletService.DAL.pdb
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\obj\Debug\net6.0\WalletService.DAL.genruntimeconfig.cache
+C:\Users\USER\source\repos\WalletService\WalletService.DAL\obj\Debug\net6.0\ref\WalletService.DAL.dll

@@ -1,0 +1,12 @@
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\bin\Debug\net6.0\WalletService.Infastructure.deps.json
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\bin\Debug\net6.0\WalletService.Infastructure.dll
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\bin\Debug\net6.0\WalletService.Infastructure.pdb
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\obj\Debug\net6.0\WalletService.Infastructure.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\obj\Debug\net6.0\WalletService.Infastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\obj\Debug\net6.0\WalletService.Infastructure.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\obj\Debug\net6.0\WalletService.Infastructure.AssemblyInfo.cs
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\obj\Debug\net6.0\WalletService.Infastructure.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\obj\Debug\net6.0\WalletService.Infastructure.dll
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\obj\Debug\net6.0\refint\WalletService.Infastructure.dll
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\obj\Debug\net6.0\WalletService.Infastructure.pdb
+C:\Users\USER\source\repos\WalletService\WalletService.Infastructure\obj\Debug\net6.0\ref\WalletService.Infastructure.dll
