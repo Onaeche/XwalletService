@@ -13,6 +13,8 @@ namespace WalletService.Models
         [Key]
         public int userId { get; set; }
         public string userName { get; set; }
+        public string? walletAccount { get; set; }
+        public string? bankAccount { get; set; }
         public string password { get; set; }
         public string businessName { get; set; }
         public string businessAddress { get; set; }
@@ -29,6 +31,7 @@ namespace WalletService.Models
         public int? serviceProvider { get; set; }
         public string? address { get; set; }
         public string? superSimPhoneNo { get; set; }
+        public string? superSimEmailAddress { get; set; }
         public int? roleId { get; set; }
         public bool? isActive { get; set; }
         public bool? IsDeleted { get; set; }
@@ -38,7 +41,7 @@ namespace WalletService.Models
         public int? approvedBy { get; set; }
         public DateTime? modifiedDate { get; set; }
         public int? modifiedBy { get; set; }
-        public string token1 { get; set; }
-        public string token2 { get; set; }
+        public string userToken { get; set; }
+        public string? SuperSimToken { get; set; }
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword />
+    <History>True|2023-07-22T16:44:12.8948445Z;True|2023-07-22T17:40:19.1429645+01:00;False|2023-07-22T17:39:09.0872437+01:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="WalletService.Data.ApplicationDbContext">
+      <Value>Data Source=SQL5085.site4now.net%3bInitial Catalog=db_a9c97b_xwallet%3bUser Id=db_a9c97b_xwallet_admin%3bPassword=p%40ssw0rd123</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

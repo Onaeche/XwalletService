@@ -164,7 +164,7 @@ namespace WalletService.Services.Implementation
 
                 //send mail
                 var mailBody = System.IO.File.ReadAllText(mailTemplatepath).Replace("{Name}", getUser.firstName+ " " + getUser.lastName).Replace("{password}", defaultPassword);
-                _mailSender.Sendmail(mailSubject, getUser.emailAddress, mailBody);
+                await _mailSender.Sendmail(mailSubject, getUser.emailAddress, mailBody, isHtmlFormat: true);
                 _response.responseCode = Constants.responseConstant.responseCode00;
                 _response.responseDescription = Constants.responseConstant.responseResponseDescription00;
             }

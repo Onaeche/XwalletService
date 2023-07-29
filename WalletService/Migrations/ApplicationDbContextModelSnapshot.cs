@@ -57,6 +57,43 @@ namespace WalletService.Migrations
                     b.ToTable("auditTrailLogs");
                 });
 
+            modelBuilder.Entity("WalletService.Models.balanceInfo", b =>
+                {
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("walletAccount")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("serviceProvider")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("airtimeBalance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("createdDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("dataBalance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("telcoWalletAccount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("updatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("userId", "walletAccount", "serviceProvider");
+
+                    b.ToTable("balance");
+                });
+
             modelBuilder.Entity("WalletService.Models.customerInfo", b =>
                 {
                     b.Property<int>("customerId")
@@ -368,6 +405,9 @@ namespace WalletService.Migrations
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("SuperSimToken")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("address")
                         .HasColumnType("nvarchar(max)");
 
@@ -376,6 +416,9 @@ namespace WalletService.Migrations
 
                     b.Property<DateTime?>("approvedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("bankAccount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("businessAddress")
                         .IsRequired()
@@ -436,19 +479,21 @@ namespace WalletService.Migrations
                     b.Property<int?>("serviceProvider")
                         .HasColumnType("int");
 
+                    b.Property<string>("superSimEmailAddress")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("superSimPhoneNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("token1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("token2")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("userName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("walletAccount")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("userId");

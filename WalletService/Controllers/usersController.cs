@@ -32,42 +32,14 @@ namespace WalletService.Controllers
             _auditTrailLogService = auditTrailLogService;
            
         }
-        [HttpGet]
-        [Route("getUsersList")]
-        public async Task<ActionResult<IEnumerable<userInfo>>> getUsersList()
-        {
-            var userCache = new List<userInfo>();
-            userCache = _cacheService.GetData<List<userInfo>>("userInfo");
-            if (userCache == null)
-            {
-                var user = await _context.users.ToListAsync();
-                //_auditTrailLogService.addLog(1, "usersController", "getUsersList", "get User details", "");
-                if (user.Count > 0)
-                {
-                    userCache = user;
-                    var expirationTime = DateTimeOffset.Now.AddMinutes(3.0);
-                    _cacheService.SetData("userInfo", userCache, expirationTime);
-                }
-            }
-            return userCache;
-        }
-        [HttpGet]
-        [Route("userDetail")]
-        public async Task<ActionResult<userInfo>> userDetail(int id)
-        {
-            var userCache = new userInfo();
-            var userCacheList = new List<userInfo>();
-            userCacheList = _cacheService.GetData<List<userInfo>>("userInfo");
-            userCache = userCacheList.Find(x => x.userId == id);
-            if (userCache == null)
-            {
-                userCache = await _context.users.FindAsync(id);
-            }
-            return userCache;
-        }
+        
+
+       
+
+        
        
         [HttpPost]
-        [Route("createUser")]
+        [Route("create_User")]
         public async Task<ActionResult<response>> createUser(userInfoRequest resource)
         {
             response _createUserResponse = new response();
@@ -86,8 +58,8 @@ namespace WalletService.Controllers
         }
 
         [HttpPost]
-        [Route("activateDealer")]
-        public async Task<ActionResult<response>> activateDealer(int id, activateUserRequest resource)
+        [Route("verify_Token")]
+        public async Task<ActionResult<response>> activate(int id, activateUserRequest resource)
         {
             response _response = new response();
             try
@@ -107,76 +79,120 @@ namespace WalletService.Controllers
             if (id != resource.userId)
             {
                 return BadRequest();
-
-
-
-
             }
             return _response;
             
         }
 
         [HttpPost]
-        [Route("deleteUser")]
-        public async Task<ActionResult<IEnumerable<userInfo>>> deleteUser(int id)
+        [Route("de-Activate")]
+        public async Task<ActionResult<response>> deactivate(int id)
         {
-            var user = await _context.users.FindAsync(id);
-            if (user == null)
+            response _response = new response();
+            try
             {
-                return NotFound();
+                
+                _response = await _userService.deactivateUser(id);
             }
-            _context.users.Remove(user);
-            _cacheService.RemoveData("userInfo");
-            await _context.SaveChangesAsync();
-            return await _context.users.ToListAsync();
-        }
-       
-        [HttpPost]
-        [Route("updateUser")]
-        public async Task<ActionResult<IEnumerable<userInfo>>> updateUser(int id, userInfo user)
-        {
-            if (id != user.userId)
+            catch (Exception ex)
             {
-                return BadRequest();
-            }
-            var userData = await _context.users.FindAsync(id);
-            if (userData == null)
-            {
-                return NotFound();
-            }
 
-            userData.userName = user.userName;
-            userData.password = user.password;
-            userData.businessName = user.businessName;
-            userData.businessAddress = user.businessAddress;
-            userData.firstName = user.firstName;
-            userData.lastName = user.lastName;
-            userData.middleName = user.middleName;
-            userData.DOB = user.DOB;
-            userData.BVN = user.BVN;
-            userData.phoneNo = user.phoneNo;
-            userData.emailAddress = user.emailAddress;
-            userData.idType = user.idType;
-            userData.idNumber = user.idNumber;
-            userData.paasportPhoto = user.paasportPhoto;
-            userData.serviceProvider = user.serviceProvider;
-            userData.address = user.address;
-            userData.superSimPhoneNo = user.superSimPhoneNo;
-            userData.roleId = user.roleId;
-            userData.isActive = true;
-            userData.IsDeleted = user.IsDeleted;
-            userData.createdDate = user.createdDate;
-            userData.createdBy = user.createdBy;
-            userData.approvedDate = user.approvedDate;
-            userData.approvedBy = user.approvedBy;
-            userData.modifiedDate = user.modifiedDate;
-            userData.modifiedBy = user.modifiedBy;
-            userData.token1 = user.token1;
-            userData.token2 = user.token2;
-            _cacheService.RemoveData("userInfo");
-            _context.Update(userData);
-            await _context.SaveChangesAsync();
-            return await _context.users.ToListAsync();
+                throw;
+            }
+            
+            return _response;
+
         }
+
+        [HttpGet]
+        [Route("fetch_Dealer_Details")] 
+        public async Task<ActionResult<userInfo>> fetch_Dealer_Details(int userId)
+        {
+            var fetchDealerDetails = await _userService.fetchDealerDetails(userId);
+
+            return fetchDealerDetails;
+
+        }
+
+        [HttpGet]
+        [Route("fetch_Dealer_Airtime_Balance")]
+        public async Task<ActionResult<balanceInfo>> fetch_Dealer_Airtime_Balance(int userId)
+        {
+            var fetchDealerDetails = await _userService.fetchDealerAirtimeBalance(userId);
+
+            return fetchDealerDetails;
+
+        }
+
+        [HttpGet]
+        [Route("get_Dealer_Transaction_History")]
+        public async Task<ActionResult<transactionLog>> get_Dealer_Transaction_History(int userId)
+        {
+            var getDealerTransactionHistory = await _userService.getDealerTransactionHistory(userId);
+
+            return getDealerTransactionHistory;
+
+        }
+
+        [HttpGet]
+        [Route("get_List_of_users")]
+        public async Task<ActionResult<userInfo>> get_List_of_users(int userId)
+        {
+            var getListOfUsers = await _userService.getListOfUsers(userId);
+
+            return getListOfUsers;
+
+        }
+
+        [HttpGet]
+        [Route("userDetail")]
+        public async Task<ActionResult<userInfo>> userDetail(int id)
+        {
+            var userCache = new userInfo();
+            var userCacheList = new List<userInfo>();
+            userCacheList = _cacheService.GetData<List<userInfo>>("userInfo");
+            userCache = userCacheList.Find(x => x.userId == id);
+            if (userCache == null)
+            {
+                userCache = await _context.users.FindAsync(id);
+            }
+            return userCache;
+        }
+
+
+        //[HttpGet]
+        //[Route("getUsersList")]
+        //public async Task<ActionResult<IEnumerable<userInfo>>> getUsersList()
+        //{
+        //    var userCache = new List<userInfo>();
+        //    userCache = _cacheService.GetData<List<userInfo>>("userInfo");
+        //    if (userCache == null)
+        //    {
+        //        var user = await _context.users.ToListAsync();
+        //        //_auditTrailLogService.addLog(1, "usersController", "getUsersList", "get User details", "");
+        //        if (user.Count > 0)
+        //        {
+        //            userCache = user;
+        //            var expirationTime = DateTimeOffset.Now.AddMinutes(3.0);
+        //            _cacheService.SetData("userInfo", userCache, expirationTime);
+        //        }
+        //    }
+        //    return userCache;
+        //}
+        //[HttpPost]
+        //[Route("deleteUser")]
+        //public async Task<ActionResult<IEnumerable<userInfo>>> deleteUser(int id)
+        //{
+        //    var user = await _context.users.FindAsync(id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    _context.users.Remove(user);
+        //    _cacheService.RemoveData("userInfo");
+        //    await _context.SaveChangesAsync();
+        //    return await _context.users.ToListAsync();
+        //}
+       
     }
 }

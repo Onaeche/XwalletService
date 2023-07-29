@@ -25,5 +25,8 @@
 
         public static readonly string responseCode06 = "06";
         public static readonly string responseResponseDescription06 = "User is Locked, kindly reach Administrator ";
+
+         public static readonly string responseCode07 = "07";
+        public static readonly string responseResponseDescription07 = "Invalid user";
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,15 +33,15 @@ namespace WalletService.Data
         
         public DbSet<auditTrailLog> auditTrailLogs { get; set; }
         public DbSet<sessionTracker> sessionTrackers { get; set; }
+        public DbSet<balanceInfo> balance { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
-
-            
+           
             builder.Entity<transactionLog>().Property(p => p.amount).IsRequired().HasColumnType("decimal(18,4)");
             builder.Entity<transactionLog>().Property(p => p.balanceBeforeTransaction).IsRequired().HasColumnType("decimal(18,4)");
             builder.Entity<transactionLog>().Property(p => p.balanceAfterTransaction).IsRequired().HasColumnType("decimal(18,4)");
+            builder.Entity<balanceInfo>().HasKey(m => new { m.userId, m.walletAccount, m.serviceProvider });
 
         }
 

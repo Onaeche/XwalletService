@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "SuuNBYbJ2y8PFhO4EW5zdY96nL/gMqL/6FepzkQV1rA=",
+  "Source": "WalletService",
+  "BasePath": "_content/WalletService",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

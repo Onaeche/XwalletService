@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\USER\Desktop\New folder\XWallet</_PublishTargetUrl>
+    <History>True|2023-07-22T16:16:20.1936136Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="WalletService.Data.ApplicationDbContext">
+      <Value>Data Source=SQL5085.site4now.net%3bInitial Catalog=db_a9c97b_xwallet%3bUser Id=db_a9c97b_xwallet_admin%3bPassword=YOUR_DB_PASSWORD</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

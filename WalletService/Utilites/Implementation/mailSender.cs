@@ -7,7 +7,7 @@ namespace WalletService.Utilites.Implementation
     public class mailSender : IMailSender
     {
 
-        public Task Sendmail(string Subject, string Reciever, string body)
+        public Task Sendmail(string Subject, string Reciever, string body, bool isHtmlFormat = false)
         {
             string Smtp = ConfigurationManager.AppSetting["Mailer:Smtp"];
             string Sender = ConfigurationManager.AppSetting["Mailer:SenderAccount"];
@@ -21,12 +21,19 @@ namespace WalletService.Utilites.Implementation
                 Credentials = new NetworkCredential(Sender, Password)
             };
 
-            return client.SendMailAsync(
-                    new MailMessage(from: Sender,
-                                    to: Reciever,
-                                    Subject,
-                                    body
-                    ));
+            MailMessage mailMessage = new MailMessage(from: Sender,
+                                   to: Reciever,
+                                   Subject,
+                                   body
+                   );
+
+            if (isHtmlFormat)
+            {
+                mailMessage.IsBodyHtml = true;
+            }
+
+
+            return client.SendMailAsync(mailMessage);
 
         }
     }
