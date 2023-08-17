@@ -26,7 +26,7 @@ namespace WalletService.Services.Implementation
             _mailSender = mailSender;
         }
 
-        public async Task<response> setUserInfo(userInfo user)
+        public async Task<response> setUserInfo(userInfo user) 
         {
             response _createUserResponse = new response();
             generator _generator = new generator();
@@ -62,9 +62,20 @@ namespace WalletService.Services.Implementation
                     user.IsDeleted = false;
                     user.walletAccount = _generator.RandomDigits(10);
                     //user.IsLockedOut = false;
-                    user.password = _generator.Encrypt(encrypKey, user.password);
-                    user.userToken = _generator.tokenGenerator();
-                    user.SuperSimToken = _generator.tokenGenerator();
+                    if(user.roleId == 1 || user.roleId ==2)
+                    {
+                       user.password = _generator.Encrypt(encrypKey, user.password);
+
+                    }
+                    else
+                    {
+                        user.password = _generator.Encrypt(encrypKey, defaultPassword);
+                    }
+                    user.userToken = _generator.RandomDigits(6);
+                    
+
+                    
+                    user.SuperSimToken = _generator.RandomDigits(6);
                     //_user.
                     _context.users.Add(user);
                     var add = await _context.SaveChangesAsync();
@@ -81,6 +92,8 @@ namespace WalletService.Services.Implementation
                             dataBalance = 0,
                             airtimeBalance = 0,
                             createdDate = DateTime.Now,
+                            serviceProvider = user.serviceProvider
+                            //telcoWalletAccount = user.superSimPhoneNo
                         };
                         _context.balance.Add(addBalance);
                         await _context.SaveChangesAsync();
@@ -88,8 +101,7 @@ namespace WalletService.Services.Implementation
 
 
 
-                        var mailBody = System.IO.File.ReadAllText(mailTemplatepath).Replace("{Name}", user.firstName + " " + user.lastName).Replace("{password}", defaultPassword);
-                       await  _mailSender.Sendmail(mailSubject, user.emailAddress, mailBody, isHtmlFormat:true);
+                        
 
                         _createUserResponse.responseCode = Constants.responseConstant.responseCode00;
                         _createUserResponse.responseDescription = Constants.responseConstant.responseResponseDescription00;
@@ -111,14 +123,14 @@ namespace WalletService.Services.Implementation
             return _createUserResponse;
         }
 
-        public async Task<response> activateUser(int id, userInfo user)
+        public async Task<response> activateUser(activateUserRequest activateUserRequest)
         {
             response _response = new response();
             generator _generator = new generator();
             
             try
             {
-                var userData = await _context.users.FindAsync(id);
+                var userData = await  _context.users.Where(u => u.userName == activateUserRequest.userName).FirstOrDefaultAsync();
 
                 if (userData == null)
                 {
@@ -127,11 +139,13 @@ namespace WalletService.Services.Implementation
                 }
                 else
                 {
-                    if (user.roleId == 1 || user.roleId ==2)
+                    if (userData.roleId == 1 || userData.roleId ==2)
                     {
-                        String[] splited = user.userToken.Split("{}");
-                        var userToken = splited[0];
-                        var SuperSimToken = splited[1];
+                        //String[] splited = activateUserRequest.tokens.Split("{}");
+                        //var userToken = splited[0];
+                        //var SuperSimToken = splited[1];
+                        string userToken = activateUserRequest.tokens.Substring(0, 6);
+                        string SuperSimToken = activateUserRequest.tokens.Substring(6);
 
                         var checkForValidToken = _context.users.Where(u => u.userToken == userToken && u.SuperSimToken == SuperSimToken).Any();
                         if (checkForValidToken)
@@ -190,7 +204,7 @@ namespace WalletService.Services.Implementation
                     else
                     {
 
-                        var checkForValidToken = _context.users.Where(u => u.userToken == user.userToken).Any();
+                        var checkForValidToken = _context.users.Where(u => u.userToken == activateUserRequest.tokens).Any();
                         if (checkForValidToken)
                         {
 

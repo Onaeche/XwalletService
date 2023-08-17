@@ -142,16 +142,6 @@ C:\Project\XWalletService\WalletService (2)\WalletService\WalletService\obj\Debu
 C:\Project\XWalletService\WalletService (2)\WalletService\WalletService\obj\Debug\net6.0\WalletService.pdb
 C:\Project\XWalletService\WalletService (2)\WalletService\WalletService\obj\Debug\net6.0\WalletService.genruntimeconfig.cache
 C:\Project\XWalletService\WalletService (2)\WalletService\WalletService\obj\Debug\net6.0\ref\WalletService.dll
-C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.csproj.AssemblyReference.cache
-C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.GeneratedMSBuildEditorConfig.editorconfig
-C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.AssemblyInfoInputs.cache
-C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.AssemblyInfo.cs
-C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.csproj.CoreCompileInputs.cache
-C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.MvcApplicationPartsAssemblyInfo.cs
-C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.MvcApplicationPartsAssemblyInfo.cache
-C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.dll
-C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\refint\WalletService.dll
-C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.pdb
 C:\Project\Work\XwalletService\WalletService\WalletService\bin\Debug\net6.0\appsettings.Development.json
 C:\Project\Work\XwalletService\WalletService\WalletService\bin\Debug\net6.0\appsettings.json
 C:\Project\Work\XwalletService\WalletService\WalletService\bin\Debug\net6.0\WalletService.exe
@@ -203,6 +193,13 @@ C:\Project\Work\XwalletService\WalletService\WalletService\bin\Debug\net6.0\runt
 C:\Project\Work\XwalletService\WalletService\WalletService\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Project\Work\XwalletService\WalletService\WalletService\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Project\Work\XwalletService\WalletService\WalletService\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.csproj.AssemblyReference.cache
+C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.AssemblyInfoInputs.cache
+C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.AssemblyInfo.cs
+C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.csproj.CoreCompileInputs.cache
+C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.MvcApplicationPartsAssemblyInfo.cs
+C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.MvcApplicationPartsAssemblyInfo.cache
 C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\staticwebassets\msbuild.WalletService.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\staticwebassets\msbuild.build.WalletService.props
 C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.WalletService.props
@@ -212,5 +209,8 @@ C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\stat
 C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\staticwebassets.development.json
 C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\scopedcss\bundle\WalletService.styles.css
 C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.csproj.CopyComplete
+C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.dll
+C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\refint\WalletService.dll
+C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.pdb
 C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\WalletService.genruntimeconfig.cache
 C:\Project\Work\XwalletService\WalletService\WalletService\obj\Debug\net6.0\ref\WalletService.dll

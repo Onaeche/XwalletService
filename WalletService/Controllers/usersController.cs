@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using WalletService.Services.Interface;
 
 namespace WalletService.Controllers
 {
+    [EnableCors("AllowOrigin")]
     [Route("api/[controller]")]
     [ApiController, Authorize]
     public class usersController : ControllerBase
@@ -33,106 +35,6 @@ namespace WalletService.Controllers
            
         }
         
-
-       
-
-        
-       
-        [HttpPost]
-        [Route("create_User")]
-        public async Task<ActionResult<response>> createUser(userInfoRequest resource)
-        {
-            response _createUserResponse = new response();
-            try
-            {
-                var addUser = _mapper.Map<userInfoRequest, userInfo>(resource);
-                _createUserResponse = await _userService.setUserInfo(addUser);
-                
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            return _createUserResponse;
-        }
-
-        [HttpPost]
-        [Route("verify_Token")]
-        public async Task<ActionResult<response>> activate(int id, activateUserRequest resource)
-        {
-            response _response = new response();
-            try
-            {
-                if (id != resource.userId)
-                {
-                    return BadRequest();
-                }
-                var activateUser = _mapper.Map<activateUserRequest, userInfo>(resource);
-                _response = await _userService.activateUser(id, activateUser);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            if (id != resource.userId)
-            {
-                return BadRequest();
-            }
-            return _response;
-            
-        }
-
-        [HttpPost]
-        [Route("de-Activate")]
-        public async Task<ActionResult<response>> deactivate(int id)
-        {
-            response _response = new response();
-            try
-            {
-                
-                _response = await _userService.deactivateUser(id);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            
-            return _response;
-
-        }
-
-        [HttpGet]
-        [Route("fetch_Dealer_Details")] 
-        public async Task<ActionResult<userInfo>> fetch_Dealer_Details(int userId)
-        {
-            var fetchDealerDetails = await _userService.fetchDealerDetails(userId);
-
-            return fetchDealerDetails;
-
-        }
-
-        [HttpGet]
-        [Route("fetch_Dealer_Airtime_Balance")]
-        public async Task<ActionResult<balanceInfo>> fetch_Dealer_Airtime_Balance(int userId)
-        {
-            var fetchDealerDetails = await _userService.fetchDealerAirtimeBalance(userId);
-
-            return fetchDealerDetails;
-
-        }
-
-        [HttpGet]
-        [Route("get_Dealer_Transaction_History")]
-        public async Task<ActionResult<transactionLog>> get_Dealer_Transaction_History(int userId)
-        {
-            var getDealerTransactionHistory = await _userService.getDealerTransactionHistory(userId);
-
-            return getDealerTransactionHistory;
-
-        }
 
         [HttpGet]
         [Route("get_List_of_users")]

@@ -9,7 +9,7 @@ namespace WalletService.Models
         [Key]
         public int userId { get; set; }
         [Key]
-        public int serviceProvider { get; set; }
+        public int? serviceProvider { get; set; }
         
         public string? walletAccount { get; set; }
         [Key]

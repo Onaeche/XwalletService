@@ -22,7 +22,7 @@ namespace WalletService.Requests
         public string firstName { get; set; }
         [Required]
         public string lastName { get; set; }
-        [Required]
+
         public string middleName { get; set; }
         [Required]
         public string DOB { get; set; }
@@ -31,15 +31,17 @@ namespace WalletService.Requests
         [Required]
         public string phoneNo { get; set; }
         public string emailAddress { get; set; }
-        public string idType { get; set; }
+        public int idType { get; set; }
         public string idNumber { get; set; }
-        public string paasportPhoto { get; set; }
+        public string passportPhoto { get; set; }
         [Required]
-        public string serviceProvider { get; set; }
+        public int serviceProvider { get; set; }
         public string address { get; set; }
         public string superSimPhoneNo { get; set; }
         [Required]
         public int roleId { get; set; }
+        [Required]
+        public int createdBy { get; set; }
 
 
     }

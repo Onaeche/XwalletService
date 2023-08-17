@@ -1,40 +1,76 @@
-﻿using System.Net;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Net;
 using System.Net.Mail;
+using WalletService.Cache;
+using WalletService.Data;
+using WalletService.Models;
 using WalletService.Utilites.Interface;
 
 namespace WalletService.Utilites.Implementation
 {
     public class mailSender : IMailSender
     {
-
-        public Task Sendmail(string Subject, string Reciever, string body, bool isHtmlFormat = false)
+        private readonly ApplicationDbContext _context;
+        private readonly ICacheService _cacheService;
+        
+        public mailSender(ApplicationDbContext context, ICacheService cacheService)
         {
-            string Smtp = ConfigurationManager.AppSetting["Mailer:Smtp"];
-            string Sender = ConfigurationManager.AppSetting["Mailer:SenderAccount"];
-            string Password = ConfigurationManager.AppSetting["Mailer:Password"];
+            _context = context;
+            _cacheService = cacheService;
+        }
 
+        public async Task SendEmail(notificationLog notification)
+        {
+            //Send Emails
 
-            var client = new SmtpClient(Smtp, 587)
+            var addEmailNotificationLog = new notificationLog()
             {
-                EnableSsl = true,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(Sender, Password)
+                userId = notification.userId,
+                OTPCode = notification.OTPCode,
+                status = "P",
+                OTPReference = "",
+                Email = "",
+                createdDate = DateTime.Now,
+                NotificationType = (int)NotificationTypeEnums.Email,
+                createdFor = "",
+                messages = "",
+                ExpiryDate = DateTime.Now,
+                PhoneNumber = ""
+
             };
-
-            MailMessage mailMessage = new MailMessage(from: Sender,
-                                   to: Reciever,
-                                   Subject,
-                                   body
-                   );
-
-            if (isHtmlFormat)
-            {
-                mailMessage.IsBodyHtml = true;
-            }
-
-
-            return client.SendMailAsync(mailMessage);
+            _context.notificationLogs.Add(addEmailNotificationLog);
+            await _context.SaveChangesAsync();
+            _cacheService.RemoveData("notificationLog");
 
         }
+        public async Task SendSMS(notificationLog notification)
+        {
+            //Send SMS
+
+            var addSMSNotificationLog = new notificationLog()
+            {
+                userId = notification.userId,
+                OTPCode = notification.OTPCode,
+                status = "P",
+                OTPReference = "",
+                Email = "",
+                createdDate = DateTime.Now,
+                NotificationType = (int)NotificationTypeEnums.SMS,
+                createdFor = "",
+                messages = "",
+                ExpiryDate = DateTime.Now,
+                PhoneNumber = ""
+
+
+            };
+            _context.notificationLogs.Add(addSMSNotificationLog);
+            await _context.SaveChangesAsync();
+            _cacheService.RemoveData("notificationLog");
+        }
+
+
+
+
+
     }
 }

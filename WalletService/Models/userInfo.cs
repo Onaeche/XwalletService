@@ -27,7 +27,7 @@ namespace WalletService.Models
         public string? emailAddress { get; set; }
         public int? idType { get; set; }
         public string? idNumber { get; set; }
-        public string? paasportPhoto { get; set; }
+        public string? passportPhoto { get; set; }
         public int? serviceProvider { get; set; }
         public string? address { get; set; }
         public string? superSimPhoneNo { get; set; }
@@ -43,5 +43,7 @@ namespace WalletService.Models
         public int? modifiedBy { get; set; }
         public string userToken { get; set; }
         public string? SuperSimToken { get; set; }
+       // public string? Tokens { get; set; }
+       // public string? Token { get; set; }
     }
 }

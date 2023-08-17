@@ -5,7 +5,7 @@
         
         public int Id { get; set; }
         public string userName { get; set; }
-        public string password { get; set; }
+        public string? password { get; set; }
         public int? roleId { get; set; }
         public int userId { get; set; }
         public DateTime? createdDate { get; set; }

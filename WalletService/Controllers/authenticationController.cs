@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,14 +13,15 @@ using WalletService.Responses;
 
 namespace WalletService.Controllers
 {
+    [EnableCors("AllowOrigin")]
     [Route("api/[controller]")]
     [ApiController]
-    public class authenticationController : ControllerBase
+    public class AuthenticationController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly ICacheService _cacheService;
 
-        public authenticationController(ApplicationDbContext context, ICacheService cacheService)
+        public AuthenticationController(ApplicationDbContext context, ICacheService cacheService)
         {
             _context = context;
             _cacheService = cacheService;

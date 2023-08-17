@@ -1,7 +1,10 @@
-﻿namespace WalletService.Utilites.Interface
+﻿using WalletService.Models;
+
+namespace WalletService.Utilites.Interface
 {
     public interface IMailSender
     {
-        public Task Sendmail(string Subject, string Reciever, string body, bool isHtmlFormat);
+        public Task SendEmail(notificationLog notification);
+        public Task SendSMS(notificationLog notification);
     }
 }

@@ -1,4 +1,5 @@
-﻿using WalletService.Cache;
+﻿using System.Reflection.Emit;
+using WalletService.Cache;
 using WalletService.Data;
 using WalletService.Models;
 using WalletService.Requests;
@@ -22,6 +23,54 @@ namespace WalletService.Services.Implementation
             encrypKey = ConfigurationManager.AppSetting["User:EncrypKey"];
             _mailSender = mailSender;
         }
+
+        public async Task<response> ChangePassword(changePasswordRequest changePasswordRequest)
+        {
+            response _response = new response();
+            generator _generator = new generator();
+
+            try
+            {
+                //var defaultPassword = ConfigurationManager.AppSetting["User:DefaultPassword"];
+                string mailSubject = ConfigurationManager.AppSetting["Mailer:Subject"];
+                string mailTemplatepath = ConfigurationManager.AppSetting["Mailer:EmailTemplatePath"];
+                var getUser = _context.users.Where(u => u.userName == changePasswordRequest.userName ).FirstOrDefault();
+                var loginData = _context.logins.Where(u => u.userName == changePasswordRequest.userName && _generator.Decrypt(encrypKey,u.password) == changePasswordRequest.oldPassword).FirstOrDefault();
+                
+                if (loginData != null)
+                {
+                    getUser.password = _generator.Encrypt(encrypKey, changePasswordRequest.newPassword);
+                    loginData.password = getUser.password;
+                    loginData.IsDefault = false;
+                    _cacheService.RemoveData("login");
+                    _context.Update(getUser);
+                    _cacheService.RemoveData("userInfo");
+                    _context.Update(loginData);
+
+                    //send mail
+                    //var mailBody = System.IO.File.ReadAllText(mailTemplatepath).Replace("{Name}", getUser.firstName + " " + getUser.lastName).Replace("{password}", defaultPassword);
+                    //await _mailSender.Sendmail(mailSubject, getUser.emailAddress, mailBody, isHtmlFormat: true);
+                    _response.responseCode = Constants.responseConstant.responseCode00;
+                    _response.responseDescription = Constants.responseConstant.responseResponseDescription00;
+                }
+                else
+                {
+                    _response.responseCode = Constants.responseConstant.responseCode08;
+                    _response.responseDescription = Constants.responseConstant.responseResponseDescription08;
+                }
+
+                
+            }
+
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return _response;
+        }
+
         public async Task<loginResponse> login( loginRequest user)
         {
             loginResponse _response = new loginResponse();
@@ -29,10 +78,11 @@ namespace WalletService.Services.Implementation
 
             try
             {
-                var checkForUserExist = _context.logins.Where(u => u.userName == user.UserName && u.password == _generator.Encrypt(encrypKey, user.Password)).Any();
-                if (checkForUserExist)
+                var checkForUserExist = _context.logins.Where(u => u.userName == user.UserName).FirstOrDefault();
+
+                if (checkForUserExist != null)
                 {
-                    var userData = _context.logins.Where(u => u.userName == user.UserName && u.password == _generator.Encrypt(encrypKey, user.Password)).FirstOrDefault();
+                    var userData = _context.logins.Where(u => u.userName == user.UserName && _generator.Decrypt(encrypKey, checkForUserExist.password) == user.Password).FirstOrDefault();
 
                     if (userData == null)
                     {
@@ -73,6 +123,7 @@ namespace WalletService.Services.Implementation
                                 _response.responseCode = Constants.responseConstant.responseCode00;
                                 _response.responseDescription = Constants.responseConstant.responseResponseDescription00;
                                 _response.sessionId = newSessionId;
+                                _response.roleId = userData.roleId;
                             }
                             else
                             {
@@ -127,6 +178,7 @@ namespace WalletService.Services.Implementation
                         userData.lastLogOutDate = DateTime.Now;
                         _cacheService.RemoveData("login");
                         _context.Update(userData);
+                         var add = await _context.SaveChangesAsync();
                         _response.responseCode = Constants.responseConstant.responseCode00;
                         _response.responseDescription = Constants.responseConstant.responseResponseDescription00;
             }
@@ -163,8 +215,8 @@ namespace WalletService.Services.Implementation
                 _context.Update(loginData);
 
                 //send mail
-                var mailBody = System.IO.File.ReadAllText(mailTemplatepath).Replace("{Name}", getUser.firstName+ " " + getUser.lastName).Replace("{password}", defaultPassword);
-                await _mailSender.Sendmail(mailSubject, getUser.emailAddress, mailBody, isHtmlFormat: true);
+                //var mailBody = System.IO.File.ReadAllText(mailTemplatepath).Replace("{Name}", getUser.firstName+ " " + getUser.lastName).Replace("{password}", defaultPassword);
+                //await _mailSender.Sendmail(mailSubject, getUser.emailAddress, mailBody, isHtmlFormat: true);
                 _response.responseCode = Constants.responseConstant.responseCode00;
                 _response.responseDescription = Constants.responseConstant.responseResponseDescription00;
             }

@@ -9,7 +9,7 @@ namespace WalletService.Services.Interface
     {
         
         public Task<response> setUserInfo(userInfo user);
-        public Task<response> activateUser(int id, userInfo user);
+        public Task<response> activateUser(activateUserRequest activateUserRequest);
         public Task<response> deactivateUser(int id);
         public Task<userInfo> fetchDealerDetails(int userId);
         public Task<balanceInfo> fetchDealerAirtimeBalance(int userId); 

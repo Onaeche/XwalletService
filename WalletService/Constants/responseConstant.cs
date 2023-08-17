@@ -28,5 +28,8 @@
 
          public static readonly string responseCode07 = "07";
         public static readonly string responseResponseDescription07 = "Invalid user";
+
+        public static readonly string responseCode08 = "07";
+        public static readonly string responseResponseDescription08 = "Invalid userName/Password";
     }
 }

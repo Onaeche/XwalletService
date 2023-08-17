@@ -10,5 +10,6 @@ namespace WalletService.Services.Interface
         public Task<loginResponse> login(loginRequest user);
         public Task<loginResponse> logOut(string SessionId);
         public Task<response> resetPassword(string userName);
+        public Task<response> ChangePassword(changePasswordRequest changePasswordRequest);
     }
 }

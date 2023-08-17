@@ -65,7 +65,7 @@ namespace WalletService.Migrations
                     b.Property<string>("walletAccount")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("serviceProvider")
+                    b.Property<int?>("serviceProvider")
                         .HasColumnType("int");
 
                     b.Property<int>("Id")
@@ -198,7 +198,6 @@ namespace WalletService.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("roleId")
@@ -214,6 +213,69 @@ namespace WalletService.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("logins");
+                });
+
+            modelBuilder.Entity("WalletService.Models.notificationLog", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("NotificationType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OTPCode")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
+                    b.Property<string>("OTPReference")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool?>("Validated")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ValidatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("createdDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("createdFor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("messages")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("notificationLogs");
                 });
 
             modelBuilder.Entity("WalletService.Models.otpContainer", b =>
@@ -463,7 +525,7 @@ namespace WalletService.Migrations
                     b.Property<DateTime?>("modifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("paasportPhoto")
+                    b.Property<string>("passportPhoto")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("password")

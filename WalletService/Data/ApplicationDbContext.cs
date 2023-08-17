@@ -34,6 +34,8 @@ namespace WalletService.Data
         public DbSet<auditTrailLog> auditTrailLogs { get; set; }
         public DbSet<sessionTracker> sessionTrackers { get; set; }
         public DbSet<balanceInfo> balance { get; set; }
+        public DbSet<notificationLog> notificationLogs { get; set; }
+        //public DbSet<emailNotification> emailNotifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

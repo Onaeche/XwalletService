@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WalletService.Cache;
@@ -12,8 +14,9 @@ using static StackExchange.Redis.Role;
 
 namespace WalletService.Controllers
 {
+    [EnableCors("AllowOrigin")]
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, Authorize]
     public class loginController : ControllerBase
     {
         private readonly ICacheService _cacheService;
@@ -90,6 +93,27 @@ namespace WalletService.Controllers
             }
             return _response;
         }
+        
+        [HttpPost]
+        [Route("changePassword")]
+        public async Task<ActionResult<response>> changePassword(changePasswordRequest changePasswordRequest)
+        {
+            response _response = new response();
+            try
+            {
+                //var addUser = _mapper.Map<userInfoRequest, userInfo>(resource);
+                _response = await _loginService.ChangePassword(changePasswordRequest);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return _response;
+        }
+
+       
 
 
     }

@@ -12,6 +12,7 @@ namespace WalletService.Mapping
         {
             CreateMap<userInfoRequest, userInfo>();
             CreateMap<activateUserRequest, userInfo>();
+            CreateMap<registerOtherUsersRequest, userInfo>();
            
         }
     }

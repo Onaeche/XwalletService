@@ -43,6 +43,29 @@ builder.Services.AddSwaggerGen(options => {
         }
     });
 });
+
+
+// Named Policy
+builder.Services.AddCors(policy =>
+{
+    policy.AddPolicy("AllowOrigin", p =>
+    {
+        p.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+        //.AllowCredentials();
+    });
+});
+
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(name: "AllowOrigin",
+//        builder =>
+//        {
+//            builder.WithOrigins("http://localhost:4200")
+//                                .AllowAnyHeader()
+//                                .AllowAnyMethod();
+//        });
+//});
+
 builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddScoped<IUserService, userService>();
 builder.Services.AddScoped<ILoginService, loginService>();
@@ -82,3 +105,5 @@ app.UseAuthorization();
 app.MapControllers();
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.Run();
+// with a named pocili
+app.UseCors("AllowOrigin");

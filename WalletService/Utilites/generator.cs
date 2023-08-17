@@ -67,7 +67,8 @@ namespace WalletService.Utilites
                     {
                         using (StreamReader streamReader = new StreamReader((Stream)cryptoStream))
                         {
-                            return streamReader.ReadToEnd();
+                              var dec = streamReader.ReadToEnd();
+                            return dec;
                         }
                     }
                 }
